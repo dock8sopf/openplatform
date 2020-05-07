@@ -1,0 +1,29 @@
+###
+POST http://localhost:8080/hellogrpc/Greeter/SayHello
+Accept: */*
+Cache-Control: no-cache
+
+{"name":"陆隐峰", "age": 16}
+###
+POST http://localhost:8080/hellogrpc/Greeter/SayGoodBye
+Accept: */*
+Cache-Control: no-cache
+
+{"name": "陆隐峰"}
+###
+POST http://localhost:8080/hellouserinfo/UserInfo/GetUserInfo
+Accept: */*
+Cache-Control: no-cache
+
+{"id": 1}
+###
+GET http://localhost:8000/ping
+Accept: */*
+Cache-Control: no-cache
+###
+POST http://open.platform.com:30003/hellouserinfo/UserInfo/GetUserInfo
+Accept: */*
+Cache-Control: no-cache
+
+{"id": 1}
+###

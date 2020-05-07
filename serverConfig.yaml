@@ -1,0 +1,7 @@
+ip: 0.0.0.0
+port: 8000
+log:
+  trace: ./run.log
+  info: ./run.log
+  warning: ./run.log
+  error: ./run.log
