@@ -33,10 +33,6 @@ func (e *EngineHandler) process() {
 		e.ResponseAsJson(global.RespFailed(err.Error()))
 		return
 	}
-	//conn, err := engine.GetGrpcConnection(serviceInfo.Iport)
-	//if err != nil {
-	//	fmt.Printf("get connection failed: %s\n", err.Error())
-	//}
 
 	resp, err := engine.Call(project, service, function, serviceInfo.Proto, serviceInfo.Content, serviceInfo.Iport, string(e.GetBody()), nil)
 	if err == global.MethodFoundError {
