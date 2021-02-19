@@ -45,7 +45,7 @@ func (e *EngineHandler) process() {
 		return
 	}
 	result := map[string]interface{}{}
-	json.Unmarshal([]byte(resp.Data), &result)
+	_ = json.Unmarshal([]byte(resp.Data), &result)
 	e.ResponseAsJson(global.RespSuccess(result))
 }
 
