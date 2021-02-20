@@ -34,7 +34,7 @@ func (e *EngineHandler) process() {
 		return
 	}
 
-	resp, err := engine.Call(project, service, function, serviceInfo.Proto, serviceInfo.Content, serviceInfo.Iport, string(e.GetBody()), nil)
+	resp, err := engine.Call(project, service, function, serviceInfo.Proto, serviceInfo.Content, serviceInfo.Iport, e.getParamToJsonFmt(), nil)
 	if err == global.MethodFoundError {
 		e.ResponseWriter.WriteHeader(http.StatusNotFound)
 		e.ResponseAsText("")
@@ -55,4 +55,34 @@ func (e *EngineHandler) Get() {
 
 func (e *EngineHandler) Post() {
 	e.process()
+}
+
+func (e *EngineHandler) Put() {
+	e.process()
+}
+
+func (e *EngineHandler) Delete() {
+	e.process()
+}
+
+func (e EngineHandler) getParamToJsonFmt() string {
+	body := e.GetBody()
+	if len(body) > 0 {
+		return string(body)
+	}
+	urlParams := e.Request.URL.RawQuery
+	jr := map[string]string{}
+	for _, urlParam := range strings.Split(urlParams, "&") {
+		uv := strings.Split(urlParam, "=")
+		if len(uv) >= 2 {
+			jr[uv[0]] = uv[1]
+		} else {
+			jr[uv[0]] = ""
+		}
+	}
+	paramJson, err := json.Marshal(jr)
+	if err == nil {
+		return string(paramJson)
+	}
+	return "{}"
 }
