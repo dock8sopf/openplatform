@@ -17,7 +17,7 @@ type ServerInfo struct {
 	Content string `json:"content"`
 }
 
-// RegisterToEtcd 向etcd注册参数
+// DiscoverService 向etcd注册参数
 //  - url 请求的url
 //  - project 项目名
 //  - service 服务名
@@ -34,7 +34,7 @@ func DiscoverService(url string, project string, service string) (*ServerInfo, e
 	defer cli.Close()
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	resp, err := cli.Get(ctx, project+"-"+service)
+	resp, err := cli.Get(ctx, project+"-"+service, clientv3.WithPrefix())
 	if err != nil {
 		logger.Error.Printf("从etcd(%s)获取值失败 => (%s)", etcdIport, err.Error())
 		return nil, err
