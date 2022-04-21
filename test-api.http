@@ -5,13 +5,13 @@ Cache-Control: no-cache
 
 {"name":"陆隐峰", "age": 16}
 ###
-POST http://localhost:8080/hellogrpc/Greeter/SayGoodBye
+POST http://localhost:8000/hellogrpc/Greeter/SayGoodBye
 Accept: */*
 Cache-Control: no-cache
 
 {"name": "陆隐峰"}
 ###
-POST http://localhost:8080/hellouserinfo/UserInfo/GetUserInfo
+POST http://localhost:8000/hellouserinfo/UserInfo/GetUserInfo
 Accept: */*
 Cache-Control: no-cache
 
@@ -20,10 +20,25 @@ Cache-Control: no-cache
 GET http://localhost:8000/ping
 Accept: */*
 Cache-Control: no-cache
-###
-POST http://open.platform.com:30003/hellouserinfo/UserInfo/GetUserInfo
+### hellouserinfo-UserInfo/10.244.0.5
+POST http://privateclouds-lizhihao-18.dev.kwaidc.com:30003/hellouserinfo/UserInfo/GetUserInfo
 Accept: */*
 Cache-Control: no-cache
+Content-Type: application/json
 
 {"id": 1}
 ###
+POST http://privateclouds-lizhihao-18.dev.kwaidc.com:30003/grpcalculator/Calculation/DescFunc
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "sum"}
+
+###
+POST http://privateclouds-lizhihao-18.dev.kwaidc.com:30003/grpcalculator/Calculation/Func
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"func": "sum", "param":  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}

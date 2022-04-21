@@ -26,7 +26,7 @@ func (e *EngineHandler) process() {
 	serviceInfo, err := engine.DiscoverService(url, project, service)
 	if err == global.ServiceNotFoundError {
 		e.ResponseWriter.WriteHeader(http.StatusNotFound)
-		e.ResponseAsText("")
+		e.ResponseAsText("service not found")
 		return
 	}
 	if err != nil {
@@ -37,7 +37,7 @@ func (e *EngineHandler) process() {
 	resp, err := engine.Call(project, service, function, serviceInfo.Proto, serviceInfo.Content, serviceInfo.Iport, e.getParamToJsonFmt(), nil)
 	if err == global.MethodFoundError {
 		e.ResponseWriter.WriteHeader(http.StatusNotFound)
-		e.ResponseAsText("")
+		e.ResponseAsText("method not found")
 		return
 	}
 	if err != nil {
