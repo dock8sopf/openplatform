@@ -32,7 +32,7 @@ func DiscoverService(url string, project string, service string) (*ServerInfo, e
 		return nil, err
 	}
 	defer cli.Close()
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
 	defer cancel()
 	resp, err := cli.Get(ctx, project+"-"+service, clientv3.WithPrefix())
 	if err != nil {
